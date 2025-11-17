@@ -8,7 +8,10 @@ import altair as alt
 # ---------------------------------------
 st.set_page_config(page_title="個体群増加モデル（指数増加）", layout="wide")
 
-st.title("個体群の増加モデル（指数増加）")
+st.markdown(
+    "<h3 style='font-size:22px; color:#333;'>個体群の増加モデル（指数増加）</h3>",
+    unsafe_allow_html=True
+)
 st.write("サイドバーのスライダーで N₀（初期個体数）と r（内的増殖率）を調整できます。")
 
 st.latex(r"N_t = N_0 e^{rt}")
@@ -72,3 +75,4 @@ chart = (
 )
 
 st.altair_chart(chart, use_container_width=True)
+
