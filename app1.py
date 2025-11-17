@@ -12,35 +12,36 @@ st.markdown(
     "<h3 style='font-size:22px; color:#333;'>個体群の増加モデル（指数増加）</h3>",
     unsafe_allow_html=True
 )
-st.write("サイドバーのスライダーで N₀（初期個体数）と r（内的増殖率）を調整できます。")
+st.write("サイドバーの入力欄で N₀（初期個体数）と r（内的増殖率）を直接入力できます。")
 
 st.latex(r"N_t = N_0 e^{rt}")
 
 # ---------------------------------------
-# サイドバー（左）にスライダー配置
+# サイドバー（slider → number_input）
 # ---------------------------------------
 st.sidebar.header("パラメータ設定")
 
-N0 = st.sidebar.slider(
+N0 = st.sidebar.number_input(
     "N₀（初期個体数）",
     min_value=0,
-    max_value=1000,
-    value=100,       # デフォルト
+    max_value=100000,
+    value=100,    # デフォルト
     step=10,
 )
 
-r = st.sidebar.slider(
+r = st.sidebar.number_input(
     "r（内的増殖率）",
-    min_value=0.0,
-    max_value=1.0,
-    value=0.2,       # デフォルト
+    min_value=-5.0,   # 減少モデルも扱えるように負も許可
+    max_value=5.0,
+    value=0.2,        # デフォルト
     step=0.01,
+    format="%.3f"
 )
 
-t_max = st.sidebar.slider(
+t_max = st.sidebar.number_input(
     "t の最大値（期間）",
     min_value=1,
-    max_value=100,
+    max_value=10000,
     value=20,
     step=1,
 )
@@ -48,7 +49,7 @@ t_max = st.sidebar.slider(
 # ---------------------------------------
 # 計算
 # ---------------------------------------
-t_values = list(range(t_max + 1))
+t_values = list(range(int(t_max) + 1))
 Nt_values = [N0 * math.exp(r * t) for t in t_values]
 
 df = pd.DataFrame({"t": t_values, "N": Nt_values})
@@ -75,4 +76,3 @@ chart = (
 )
 
 st.altair_chart(chart, use_container_width=True)
-
