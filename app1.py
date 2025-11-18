@@ -6,7 +6,7 @@ import altair as alt
 # ---------------------------------------
 # 画面設定
 # ---------------------------------------
-st.set_page_config(page_title="個体群増加モデル（指数増加）", layout="wide")
+st.set_page_config(page_title="個体群増加モデル（指数増加）雑草学専用", layout="wide")
 
 st.markdown(
     "<h3 style='font-size:22px; color:#333;'>個体群の増加モデル（指数増加）</h3>",
@@ -76,3 +76,4 @@ chart = (
 )
 
 st.altair_chart(chart, use_container_width=True)
+
