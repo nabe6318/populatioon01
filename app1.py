@@ -9,7 +9,7 @@ import altair as alt
 st.set_page_config(page_title="個体群増加モデル（指数増加）雑草学専用", layout="wide")
 
 st.markdown(
-    "<h3 style='font-size:22px; color:#333;'>個体群の増加モデル（指数増加）</h3>",
+    "<h3 style='font-size:22px; color:#333;'>個体群の増加モデル（雑草学・指数増加）</h3>",
     unsafe_allow_html=True
 )
 st.write("サイドバーの入力欄で N₀（初期個体数）と r（内的増殖率）を直接入力できます。")
@@ -76,4 +76,5 @@ chart = (
 )
 
 st.altair_chart(chart, use_container_width=True)
+
 
